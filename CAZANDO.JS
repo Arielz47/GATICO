@@ -365,3 +365,11 @@ function reubicarComida() {
     );
   } while (hayColision());
 }
+function restarTiempo() {
+  if (tiempo > 0) {
+    tiempo = tiempo - 1;
+    mostrarTexto("tiempo", tiempo);
+  }
+}
+
+intervalo = setInterval(restarTiempo, 1000);
