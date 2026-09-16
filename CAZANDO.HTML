@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego Cazando</title>
+  <link rel="stylesheet" href="cazando.css">
+</head>
+
+<body>
+  <main>
+    <h1>Juego Cazando</h1>
+    <p>Autor: Arielz47</p>
+    <p>Mueve al gato para alcanzar la comida.</p>
+
+    <canvas id="canvas" width="400" height="300">
+      Tu navegador no admite Canvas.
+    </canvas>
+
+    <div class="controles">
+      <button id="arriba" type="button" disabled>⬆</button>
+      <br>
+      <button id="izquierda" type="button">⬅</button>
+      <button id="abajo" type="button" disabled>⬇</button>
+      <button id="derecha" type="button" disabled>➡</button>
+    </div>
+
+    <div class="panel">
+      <span>Puntos: <span id="puntos">0</span></span>
+      <span>Tiempo: <span id="tiempo">10</span></span>
+    </div>
+
+    <p id="mensaje" role="status">¡Atrapa la comida!</p>
+  </main>
+
+  <script src="utilitarios.js"></script>
+  <script src="cazando.js"></script>
+</body>
+</html>
