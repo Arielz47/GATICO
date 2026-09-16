@@ -395,3 +395,29 @@ function finalizarJuego(texto) {
   mostrarTexto("mensaje", texto);
   alert(texto);
 }
+function reiniciar() {
+  // Elimina cualquier intervalo anterior.
+  clearInterval(intervalo);
+  intervalo = null;
+
+  puntaje = 0;
+  tiempo = 10;
+  terminado = false;
+
+  gatoX = 180;
+  gatoY = 130;
+
+  comidaX = 60;
+  comidaY = 140;
+
+  mostrarTexto("puntos", puntaje);
+  mostrarTexto("tiempo", tiempo);
+  mostrarTexto("mensaje", "¡Atrapa la comida!");
+
+  dibujarEscena();
+
+  intervalo = setInterval(restarTiempo, 1000);
+}
+
+document.getElementById("reiniciar")
+  .addEventListener("click", reiniciar);
