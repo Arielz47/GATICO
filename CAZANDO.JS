@@ -170,11 +170,13 @@ function hayColision() {
 // ==============================
 
 function detectarColision() {
+  if (terminado || !hayColision()) return;
 
-    if (hayColision()) {
+  puntaje = puntaje + 1;
+  mostrarTexto("puntos", puntaje);
 
-        alert("¡El gato tocó la comida!");
-    }
+  reubicarComida();
+  dibujarEscena();
 }
 
 // ==============================
@@ -348,3 +350,18 @@ mostrarTexto(
 // ==============================
 
 dibujarEscena();
+function reubicarComida() {
+  // Selecciona una posición dentro del canvas.
+  // Repite si la comida aparece tocando al gato.
+  do {
+    comidaX = generarAleatorio(
+      0,
+      canvas.width - ANCHO_COMIDA
+    );
+
+    comidaY = generarAleatorio(
+      0,
+      canvas.height - ALTO_COMIDA
+    );
+  } while (hayColision());
+}
