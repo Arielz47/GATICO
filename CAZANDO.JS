@@ -175,6 +175,15 @@ function detectarColision() {
   puntaje = puntaje + 1;
   mostrarTexto("puntos", puntaje);
 
+  if (puntaje >= 6) {
+    // Elimina visualmente la última comida.
+    limpiarCanva();
+    dibujarGato();
+
+    finalizarJuego("¡GANASTE! El gato comió 6 alimentos.");
+    return;
+  }
+
   reubicarComida();
   dibujarEscena();
 }
@@ -366,10 +375,23 @@ function reubicarComida() {
   } while (hayColision());
 }
 function restarTiempo() {
-  if (tiempo > 0) {
-    tiempo = tiempo - 1;
-    mostrarTexto("tiempo", tiempo);
+  if (terminado) return;
+
+  tiempo = Math.max(0, tiempo - 1);
+  mostrarTexto("tiempo", tiempo);
+
+  if (tiempo === 0) {
+    finalizarJuego("GAME OVER: se terminó el tiempo.");
   }
 }
+function finalizarJuego(texto) {
+  if (terminado) return;
 
-intervalo = setInterval(restarTiempo, 1000);
+  terminado = true;
+
+  clearInterval(intervalo);
+  intervalo = null;
+
+  mostrarTexto("mensaje", texto);
+  alert(texto);
+}
