@@ -97,3 +97,62 @@ document.getElementById("izquierda")
 mostrarTexto("puntos", puntaje);
 mostrarTexto("tiempo", tiempo);
 dibujarEscena();
+function moverDerecha() {
+  if (terminado) return;
+
+  gatoX = Math.min(
+    canvas.width - ANCHO_GATO,
+    gatoX + 10
+  );
+
+  dibujarEscena();
+}
+
+function moverArriba() {
+  if (terminado) return;
+
+  gatoY = Math.max(0, gatoY - 10);
+
+  dibujarEscena();
+}
+
+function moverAbajo() {
+  if (terminado) return;
+
+  gatoY = Math.min(
+    canvas.height - ALTO_GATO,
+    gatoY + 10
+  );
+
+  dibujarEscena();
+}
+
+document.getElementById("derecha").disabled = false;
+document.getElementById("arriba").disabled = false;
+document.getElementById("abajo").disabled = false;
+
+document.getElementById("derecha")
+  .addEventListener("click", moverDerecha);
+
+document.getElementById("arriba")
+  .addEventListener("click", moverArriba);
+
+document.getElementById("abajo")
+  .addEventListener("click", moverAbajo);
+
+// También permite utilizar las flechas del teclado.
+document.addEventListener("keydown", function (evento) {
+  const movimientos = {
+    ArrowLeft: moverIzquierda,
+    ArrowRight: moverDerecha,
+    ArrowUp: moverArriba,
+    ArrowDown: moverAbajo
+  };
+
+  const mover = movimientos[evento.key];
+
+  if (mover) {
+    evento.preventDefault();
+    mover();
+  }
+});
